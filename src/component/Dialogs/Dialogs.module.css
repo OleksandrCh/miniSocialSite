@@ -1,0 +1,30 @@
+
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    grid-template-areasarea: "di mi";
+}
+
+.dialogs-items {
+    grid-area: di;
+}
+
+.dialog {
+    border-right: 1px solid var(--coloro-black);
+    border-left: 1px solid var(--coloro-black);
+    padding-left: 15px;
+    color: var(--coloro-black);
+}
+
+.active {
+    color: var(--coloro-yellow);
+}
+
+.messages-items {
+    grid-area: mi;
+}
+
+.message {
+    padding-left: 15px;
+    color: var(--coloro-black);
+}
