@@ -15,9 +15,9 @@ const App = ({postData,dialogsData,messageData}) => {
                 <div className='app-wrapper-content'>
                     <Route exact path='/profile' render={()=><Profile postData={postData}/>}/>
                     <Route exact path='/dialogs' render={()=><Dialogs dialogsData={dialogsData} messageData={messageData}/>}/>
-                    <Route exact path='/news' component={Dialogs}/>
-                    <Route exact path='/music' component={Dialogs}/>
-                    <Route exact path='/settings' component={Dialogs}/>
+                    <Route exact path='/news' render={()=><News/>}/>
+                    <Route exact path='/music' render={()=><Music/>}/>
+                    <Route exact path='/settings' render={()=><Settings/>}/>
                 </div>
             </div>
         </BrowserRouter>

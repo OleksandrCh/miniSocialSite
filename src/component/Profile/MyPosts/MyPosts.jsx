@@ -17,7 +17,7 @@ const MyPosts = ({postData}) => {
                 </div>
             </div>
             <div className={s.posts}>
-                {postData.map(post => <Post message={post.post}/>)}
+                {postData.map(post => <Post id={post.id} message={post.post}/>)}
             </div>
         </div>
     )
