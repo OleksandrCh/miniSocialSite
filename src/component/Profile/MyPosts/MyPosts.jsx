@@ -2,11 +2,8 @@ import React, {useState} from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 
-const MyPosts = () => {
-    let postData = [
-        {post: 'Hi, how are you?'},
-        {post: 'It\'s my first post!'}
-    ];
+const MyPosts = ({postData}) => {
+
 
     return (
         <div className={s.postsBlock}>

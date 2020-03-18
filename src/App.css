@@ -1,12 +1,10 @@
 
-:root{
+:root {
     --coloro-black: #0A1015;
     --coloro-yellow: #F4BC16;
     --coloro-gray: #858585;
     --coloro-white: #F5F5F5;
 }
-
-
 
 .app-wrapper {
     margin: 0 auto;
