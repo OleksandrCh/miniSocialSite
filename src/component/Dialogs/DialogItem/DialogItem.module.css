@@ -1,0 +1,13 @@
+.active {
+    color: var(--coloro-yellow);
+}
+
+.dialog{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--coloro-black);
+    text-decoration: none;
+    border-right: 1px solid var(--coloro-black);
+
+}

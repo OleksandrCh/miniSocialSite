@@ -6,11 +6,15 @@ import Message from "./Message/Message";
 const Dialogs = ({dialogsData, messageData}) => {
     return (
         <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
+            <div className={s.dialogsBlock}>
                 {dialogsData.map(data => <DialogItem name={data.name} id={data.id}/>)}
             </div>
-            <div className={s.messagesItems}>
+            <div className={s.messagesBlock}>
                 {messageData.map(data =>  <Message message={data.message} id={data.id}/>)}
+                <div>
+                    <textarea></textarea>
+                    <button>Add Message</button>
+                </div>
             </div>
         </div>
     );

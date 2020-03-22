@@ -1,10 +1,14 @@
+import {renderState} from "../render";
+
+
 export let state = {
     profilePage: {
         postData: [
-            {post: 'Hi, how are you?'},
-            {post: 'It\'s my first post!'},
-            {post: 'Good by!'},
+            {id: 1,post: 'Hi, how are you?'},
+            {id: 2,post: 'It\'s my first post!'},
+            {id: 3,post: 'Good by!'},
         ],
+        newPostText: ''
     },
     dialogsPage: {
         dialogsData: [
@@ -23,5 +27,18 @@ export let state = {
             {id: 5, message: 'Yo!'}
         ],
     }
+};
 
+export const addPost = (post) => {
+    let nextId = state.profilePage.postData[state.profilePage.postData.length-1].id + 1
+    let newPost =  {id: nextId, post: post};
+    state.profilePage.postData.push(newPost);
+    renderState(state);
+};
+export const updateNewPostText = (newText) => {
+    // let nextId = state.profilePage.postData[state.profilePage.postData.length-1].id + 1
+    // let newPost =  {id: nextId, post: post};
+    state.profilePage.newPostText = newText;
+    renderState(state);
+    console.log(state.profilePage.newPostText)
 };

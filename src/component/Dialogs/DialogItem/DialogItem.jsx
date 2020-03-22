@@ -1,12 +1,18 @@
-import React from 'react';
-import s from '../Dialogs.module.css';
+import React, {useState} from 'react';
+import s from './DialogItem.module.css';
 import {NavLink} from "react-router-dom";
+import Avatar from "../../Profile/MyPosts/Avatar/Avatar";
 
 const DialogItem = ({name, id}) => {
+    const [active, setActive] = useState(false);
     return (
-        <div className={`${s.dialog} ${s.active}`}>
-            <NavLink to={`/dialogs/${id}`}>{name}</NavLink>
-        </div>
+            <NavLink
+                onClick={()=> setActive(!active)}
+                className={`${s.dialog} ${active && s.active}`} to={`/dialogs/${id}`}
+            >
+                <Avatar/>
+                <span>{name}</span>
+            </NavLink>
     )
 };
 

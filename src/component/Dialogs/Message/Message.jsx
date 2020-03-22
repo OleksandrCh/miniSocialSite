@@ -1,10 +1,10 @@
 import React from 'react';
-import s from '../Dialogs.module.css';
+import s from './Message.module.css';
 
-const Message = ({message}) => {
+const Message = ({message, id}) => {
     return (
         <div className={s.message}>
-            {message}
+            <div>{message}</div>
         </div>
     )
 };

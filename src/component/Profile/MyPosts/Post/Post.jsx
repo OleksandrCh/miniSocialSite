@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import s from './Post.module.css';
+import Avatar from "../Avatar/Avatar";
 
 const Post = ({message}) => {
     const [like, setLike] = useState(0);
@@ -9,7 +10,7 @@ const Post = ({message}) => {
     };
     return (
         <div className={s.item}>
-            <img src='https://whatsism.com/uploads/posts/2018-07/1530546770_rmk_vdjbx10.jpg'/>
+            <Avatar/>
             {message}
             <div>
                     <span>

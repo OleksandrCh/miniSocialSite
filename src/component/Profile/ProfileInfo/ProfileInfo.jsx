@@ -5,7 +5,7 @@ const ProfileInfo = () => {
     return (
         <div>
             <div>
-                <img className={s.img} src='https://pinster.ru/cache/bd4c23c1/avf800915e4ef4bbda93c.jpeg'/>
+                <img className={`${s.imgWidth} `} src='https://pinster.ru/cache/bd4c23c1/avf800915e4ef4bbda93c.jpeg'/>
             </div>
             <div className={s.descriptionBlock}>
                 ava + discription
