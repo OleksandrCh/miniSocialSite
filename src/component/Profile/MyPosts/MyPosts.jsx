@@ -7,16 +7,12 @@ const MyPosts = ({profilePage, addPost,updateNewPostText}) => {
     let newPostElement = React.createRef();
 
     const addNewPost = () => {
-        let text = newPostElement.current.value;
-        addPost(text);
-        newPostElement.current.value = '';
-        updateNewPostText('')
+        addPost();
     };
 
     const onPostChange = () => {
         let text = newPostElement.current.value;
         updateNewPostText(text);
-        newPostElement.current.value = '';
     };
 
     return (
