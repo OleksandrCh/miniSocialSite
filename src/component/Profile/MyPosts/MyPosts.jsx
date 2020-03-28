@@ -1,18 +1,20 @@
 import React, {useState} from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
+import {addPostActionCreator, updateNewPostActionCreator} from "../../../redux/state";
 
-const MyPosts = ({profilePage, addPost,updateNewPostText}) => {
-
+const MyPosts = ({state, dispatch}) => {
+    let {profilePage:{postData,newPostText}} = state;
+    console.log(newPostText);
     let newPostElement = React.createRef();
 
     const addNewPost = () => {
-        addPost();
+        dispatch(addPostActionCreator())
     };
 
     const onPostChange = () => {
         let text = newPostElement.current.value;
-        updateNewPostText(text);
+        dispatch(updateNewPostActionCreator(text));
     };
 
     return (
@@ -20,14 +22,14 @@ const MyPosts = ({profilePage, addPost,updateNewPostText}) => {
             <h3>My post</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement} value={profilePage.newPostText} onChange={onPostChange}></textarea>
+                    <textarea ref={newPostElement} value={newPostText} onChange={onPostChange}></textarea>
                 </div>
                 <div>
                     <button onClick={addNewPost}>Add Post</button>
                 </div>
             </div>
             <div className={s.posts}>
-                {profilePage.postData.map(post => <Post key={post.id} id={post.id} message={post.post}/>)}
+                {postData.map(post => <Post key={post.id} id={post.id} message={post.post}/>)}
             </div>
         </div>
     )

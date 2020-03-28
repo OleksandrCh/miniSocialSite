@@ -3,21 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {addNewMessage, addPost, updateNewMessage, updateNewPostText, state, subscribe} from "./redux/state";
+import {store} from "./redux/state";
+import {BrowserRouter} from "react-router-dom";
 
-const renderState = () => {
+const renderState = (state) => {
     ReactDOM.render(
-        <App
-            state={state}
-            updateNewPostText={updateNewPostText}
-            addNewMessage={addNewMessage} updateNewMessage={updateNewMessage}
-            addPost={addPost}
-        />,
+        <BrowserRouter>
+            <App dispatch={store.dispatch.bind(store)} state={state}/>
+        </BrowserRouter>,
         document.getElementById('root'));
 };
 
-renderState();
+renderState(store.getState());
 
-subscribe(renderState);
+store.subscribe(renderState);
 
 serviceWorker.unregister();
