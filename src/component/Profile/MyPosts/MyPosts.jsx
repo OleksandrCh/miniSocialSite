@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostActionCreator} from "../../../redux/state";
+import {addPostActionCreator, updateNewPostActionCreator} from "../../../redux/profileReducer";
 
 const MyPosts = ({state, dispatch}) => {
     let {profilePage:{postData,newPostText}} = state;
-    console.log(newPostText);
     let newPostElement = React.createRef();
 
     const addNewPost = () => {
@@ -22,14 +21,14 @@ const MyPosts = ({state, dispatch}) => {
             <h3>My post</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement} value={newPostText} onChange={onPostChange}></textarea>
+                    <textarea placeholder='Enter your post' ref={newPostElement} value={newPostText} onChange={onPostChange}></textarea>
                 </div>
                 <div>
                     <button onClick={addNewPost}>Add Post</button>
                 </div>
             </div>
             <div className={s.posts}>
-                {postData.map(post => <Post key={post.id} id={post.id} message={post.post}/>)}
+                {postData.map(post => <Post key={post.id} id={post.id} post={post.post}/>)}
             </div>
         </div>
     )
