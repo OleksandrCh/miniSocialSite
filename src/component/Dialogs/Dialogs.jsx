@@ -4,8 +4,9 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {addMessageActionCreator, updateNewMessageActionCreator} from "../../redux/dialogsReducer";
 
-const Dialogs = ({state: {dialogsPage: {dialogsData, messageData,newMessageText}}, dispatch}) => {
+const Dialogs = ({state, dispatch}) => {
 
+    let {dialogsPage:{dialogsData,messageData,newMessageText}} = state;
     const onSendMessageClick = () => {
         dispatch(addMessageActionCreator())
     };
@@ -22,12 +23,14 @@ const Dialogs = ({state: {dialogsPage: {dialogsData, messageData,newMessageText}
             <div className={s.messagesBlock}>
                 {messageData.map(data => <Message message={data.message} id={data.id}/>)}
                 <div>
-                    <textarea placeholder= 'Enter your message' value={newMessageText} onChange={onNewMessageChange}/>
-                    <div><button onClick={onSendMessageClick}>Add Message</button></div>
+                    <textarea placeholder='Enter your message' value={newMessageText} onChange={onNewMessageChange}/>
+                    <div>
+                        <button onClick={onSendMessageClick}>Add Message</button>
+                    </div>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Dialogs;

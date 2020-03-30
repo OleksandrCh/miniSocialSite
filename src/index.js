@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {store} from "./redux/store";
 import {BrowserRouter} from "react-router-dom";
+import {store} from "./redux/reduxStore";
 
 const renderState = (state) => {
     ReactDOM.render(
@@ -16,6 +16,9 @@ const renderState = (state) => {
 
 renderState(store.getState());
 
-store.subscribe(renderState);
+store.subscribe(() =>{
+    let state = store.getState();
+    renderState(state);
+});
 
 serviceWorker.unregister();
