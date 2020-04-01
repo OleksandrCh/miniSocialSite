@@ -1,0 +1,6 @@
+.users {
+    display: flex;
+}
+.user{
+    width: 200px;
+}
