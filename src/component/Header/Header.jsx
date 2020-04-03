@@ -1,10 +1,11 @@
 import React from "react";
 import s from './Header.module.css';
+import logo from '../../assets/logo.png'
 
 const Header = () => {
     return (
         <header className={s.header}>
-            <img alt='jsx-a11y/alt-text' src='https://cdn.worldvectorlogo.com/logos/puma-logo.svg'></img>
+            <img className={s.logo} alt='jsx-a11y/alt-text' src={logo}></img>
         </header>
     )
 };

@@ -1,6 +1,11 @@
 .users {
     display: flex;
+    /*justify-content: space-around;*/
+    flex-wrap: wrap;
 }
 .user{
     width: 200px;
+}
+.selectedPage{
+    font-weight: bold;
 }
