@@ -3,7 +3,6 @@
     grid-template-columns: 2fr 10fr;
     grid-template-areas:  "di mi";
     border-right: 1px solid var(--coloro-black);
-
 }
 
 .dialogs-block {

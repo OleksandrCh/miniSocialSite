@@ -1,14 +1,46 @@
 import React from 'react';
 import {connect} from "react-redux";
+import {followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC} from '../../redux/usersReduser'
+import * as axios from "axios";
 import Users from "./Users";
-import {followAC, unfollowAC, setUsersAC, setCurrentPageAC} from '../../redux/usersReduser'
+
+
+class UsersContainer extends React.Component {
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setTotalUsersCount(response.data.totalCount);
+                this.props.setUsers(response.data.items);
+            })
+    }
+
+    onPageChanged = (p) => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            });
+        this.props.setCurrentPage(p);
+    };
+
+    render() {
+        const {users,unfollow,follow,totalUsersCount,pageSize,currentPage} = this.props;
+        return <Users
+            onPageChanged={this.onPageChanged}
+            users={users}
+            unfollow={unfollow}
+            follow={follow}
+            totalUsersCount={totalUsersCount}
+            pageSize={pageSize}
+            currentPage={currentPage}/>
+    }
+};
 
 const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
+        totalUsersCount: state.usersPage.totalUsersCount,
     };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -24,9 +56,11 @@ const mapDispatchToProps = (dispatch) => {
         },
         setCurrentPage: (pageNumber) => {
             dispatch(setCurrentPageAC(pageNumber))
+        },
+        setTotalUsersCount: (TotalUsersCount) => {
+            dispatch(setTotalUsersCountAC(TotalUsersCount))
         }
     }
 };
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
-export default UsersContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
