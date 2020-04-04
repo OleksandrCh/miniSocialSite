@@ -4,6 +4,8 @@
     flex-wrap: wrap;
 }
 .user{
+    display: flex;
+    justify-content: end;
     width: 200px;
 }
 .selectedPage{

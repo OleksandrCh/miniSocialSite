@@ -1,6 +1,8 @@
 import React from 'react';
 import s from "./Users.module.css";
 import Avatar from "../Profile/MyPosts/Avatar/Avatar";
+import Preloader from "../common/Preloader/Preloader";
+import {NavLink} from "react-router-dom";
 
 function Users(props) {
     const {users, unfollow, follow, totalUsersCount, pageSize, onPageChanged, currentPage} = props;
@@ -23,15 +25,17 @@ function Users(props) {
                 > {p} </span>)}
             </div>
             {
-                users.length === 0 ? <div>Loading...</div>
+                users.length === 0 ? <Preloader/>
                     :
                     users.map((user) => {
                         return (
                             <div className={s.user} key={user.id}>
                                     <span>
                                         <div>
-                                            {user.photos.small ? <img src={user.photos.small}/> :
+                                            <NavLink to={`/profile/${user.id}`}>
+                                                {user.photos.small ? <img src={user.photos.small}/> :
                                                 <Avatar/>}
+                                            </NavLink>
                                         </div>
                                         <div>
                                            {user.followed ?
