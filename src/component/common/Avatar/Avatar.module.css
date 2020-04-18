@@ -1,0 +1,10 @@
+.avatar_small{
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+}
+.avatar_large{
+    width: 300px;
+    height: 300px;
+    border-radius: 30px;
+}

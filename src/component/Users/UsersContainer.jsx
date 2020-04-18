@@ -1,28 +1,29 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount,toggleIsFetching} from '../../redux/usersReduser'
-import * as axios from "axios";
 import Users from "./Users";
-import preloader from '../../assets/Spinner-1s-200px.svg'
 import Preloader from "../common/Preloader/Preloader";
+import {usersAPI} from "../../api/api";
 
 
 class UsersContainer extends React.Component {
+
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.setTotalUsersCount(response.data.totalCount);
-                this.props.setUsers(response.data.items);
+
+            usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+                .then(data => {
+                this.props.setTotalUsersCount(data.totalCount);
+                this.props.setUsers(data.items);
                 this.props.toggleIsFetching(false);
             })
     }
 
     onPageChanged = (p) => {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.setUsers(response.data.items);
+
+            usersAPI.getUsers(p, this.props.pageSize).then(data => {
+                this.props.setUsers(data.items);
                 this.props.toggleIsFetching(false);
             });
         this.props.setCurrentPage(p);
@@ -43,7 +44,7 @@ class UsersContainer extends React.Component {
         </>
 
     }
-};
+}
 
 const mapStateToProps = (state) => {
     return {
@@ -54,6 +55,9 @@ const mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching,
     };
 };
+
+// Можно заменить на обьект с actions. Connect под капотом автоматически обернёт их в функцию.
+// И если в неё приходят параметры он прокидывает их в action
 // const mapDispatchToProps = (dispatch) => {
 //     return {
 //         follow: (userId) => {

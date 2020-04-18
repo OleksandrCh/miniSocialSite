@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import s from './DialogItem.module.css';
 import {NavLink} from "react-router-dom";
-import Avatar from "../../Profile/MyPosts/Avatar/Avatar";
+import Avatar from "../../common/Avatar/Avatar";
 
 const DialogItem = ({name, id}) => {
     const [active, setActive] = useState(false);

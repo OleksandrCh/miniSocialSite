@@ -1,11 +1,9 @@
 .users {
     display: flex;
-    /*justify-content: space-around;*/
     flex-wrap: wrap;
 }
 .user{
     display: flex;
-    justify-content: end;
     width: 200px;
 }
 .selectedPage{

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import s from './Post.module.css';
-import Avatar from "../Avatar/Avatar";
+import Avatar from "../../../common/Avatar/Avatar";
 
 const Post = ({post}) => {
     const [likeCount, setLike] = useState(0);
@@ -14,7 +14,7 @@ const Post = ({post}) => {
             {post}
             <div>
                     <span>
-                        <a onClick={addLike}> {likeCount} <i className="fas fa-heart"></i></a>
+                        <span onClick={addLike}> {likeCount} like</span>
                     </span>
             </div>
         </div>

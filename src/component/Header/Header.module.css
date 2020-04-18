@@ -7,3 +7,10 @@
     height: 35px;
     padding: 10px;
 }
+
+.loginBlock{
+    float: right;
+}
+.loginBlock a{
+    color: var(--coloro-black);
+}
