@@ -3,10 +3,10 @@ import s from "./Users.module.css";
 import Avatar from "../common/Avatar/Avatar";
 import Preloader from "../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
-import {followAPI} from "../../api/api";
+
 
 function Users(props) {
-    const {users, unfollow, follow, totalUsersCount, pageSize, onPageChanged, currentPage} = props;
+    const {users, unFollow, follow, totalUsersCount, pageSize, onPageChanged, currentPage, followingInProgress,} = props;
 
     let pageCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
@@ -41,27 +41,15 @@ function Users(props) {
                                     <div>
                                        {user.followed ?
                                            <button
-                                               onClick={() => {
-                                                   followAPI.unFollowUser(user)
-                                                       .then(data => {
-                                                           if (data.resultCode === 0) {
-                                                               unfollow(user.id)
-                                                           }
-                                                       })
-                                               }}
+                                               disabled={followingInProgress.some(id => id === user.id)}
+                                               onClick={() => { unFollow(user.id) }}
                                            >
                                                Unfollow
                                            </button>
                                            :
                                            <button
-                                               onClick={() => {
-                                                   followAPI.followUser(user)
-                                                       .then(data => {
-                                                           if (data.resultCode === 0) {
-                                                               follow(user.id)
-                                                           }
-                                                       })
-                                               }}
+                                               disabled={followingInProgress.some(id => id === user.id)}
+                                               onClick={() => { follow(user.id) }}
                                            >
                                                Follow
                                            </button>}

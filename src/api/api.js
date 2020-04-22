@@ -13,30 +13,27 @@ export const usersAPI = {
     getUsers: (currentPage, pageSize) => {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data);
-    }
-};
-
-export const followAPI = {
-    unFollowUser: (user) => {
-        return instance.delete(`follow/${user.id}`)
+    },
+    unFollowUser: (id) => {
+        return instance.delete(`follow/${id}`)
             .then(response => {
                 return response.data
             })
     },
-
-    followUser: (user) => {
-        return instance.post(`follow/${user.id}`)
+    followUser: (id) => {
+        return instance.post(`follow/${id}`)
             .then(response => {
                 return response.data
             })
-    }
+    },
 };
 
 export const profileAPI = {
-  getProfileOfId: (idUser, setUserProfile) => {
-      axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${idUser}`)
-          .then(response => {
-              setUserProfile(response.data);
-          });
-  }
+    getProfileOfId: (idUser) => {
+        return instance.get(`profile/${idUser}`)
+    },
+    me: () => {
+       return instance.get(`auth/me`)
+    }
 };
+
