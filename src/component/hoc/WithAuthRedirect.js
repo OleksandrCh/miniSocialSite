@@ -8,7 +8,7 @@ export function withAuthRedirect(Component) {
         if (!props.isAuth) {
             return <Redirect to={'/login'}/>
         }
-        return Component;
+        return <Component {...props}/>;
     }
 
     let mapStateToProps = (state) => {

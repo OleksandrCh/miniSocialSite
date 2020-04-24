@@ -34,6 +34,7 @@ export const profileAPI = {
     },
     me: () => {
        return instance.get(`auth/me`)
+           .then(response => response.data)
     }
 };
 

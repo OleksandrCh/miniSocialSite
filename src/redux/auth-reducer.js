@@ -27,9 +27,9 @@ export const setAuthUserDataAC = (userId,email,login) => ({type: SET_AUTH_USER_D
 
 export const getAuthUserDataAC = () => (dispatch) => {
      profileAPI.me()
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                let {login, id, email} = response.data.data;
+        .then(data => {
+            if (data.resultCode === 0) {
+                let {login, id, email} = data.data;
                 dispatch(setAuthUserDataAC(id, email, login));
             }
         });
