@@ -2,17 +2,17 @@ import React, {Component} from 'react';
 import s from './ProfileInfo.module.css';
 
 class ProfileStatus extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+   state = {
             editMode: false,
             status: this.props.status,
-        }
-    }
-
-    componentDidMount() {
-
-    }
+        };
+   componentDidUpdate(prevProps, prevState, snapshot) {
+       console.log('componentDidUpdate');
+       if(prevProps.status !== this.props.status){
+            this.setState({status: this.props.status});
+           console.log('props is change')
+       }
+   }
 
     activateMode = () => {
         this.setState({editMode: true})
@@ -21,23 +21,19 @@ class ProfileStatus extends Component {
     unActivateMode = () => {
         this.setState({editMode: false});
         this.props.updateStatus(this.state.status)
-
     };
 
     changeStatus = (e) => {
       this.setState({status: e.currentTarget.value})
     };
 
-
-
     render() {
-        const {status} = this.props;
-        console.log(this.state.status)
-        console.log('profileStatus: ',status)
+        console.log('render')
         return (
             <div>
-                {!this.state.editMode && <div>status:
-                    <span onClick={this.activateMode}>{status}</span>
+                {!this.state.editMode &&
+                <div onClick={this.activateMode}>status:
+                    <span >{this.props.status}</span>
                 </div>}
                 {this.state.editMode && <div>status:
                     <input
