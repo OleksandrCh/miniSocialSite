@@ -23,7 +23,7 @@ const Dialogs = (props) => {
             <div className={s.messagesBlock}>
                 {messageData.map(data => <Message key={data.id} message={data.message} id={data.id}/>)}
                 <div>
-                    <textarea placeholder='Enter your message' value={newMessageText} onChange={onNewMessageChange}/>
+                    <div><textarea placeholder='Enter your message' value={newMessageText} onChange={onNewMessageChange}/></div>
                     <div>
                         <button onClick={onSendMessageClick}>Add Message</button>
                     </div>

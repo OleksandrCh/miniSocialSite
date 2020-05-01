@@ -24,7 +24,7 @@ class ProfileStatus extends Component {
     };
 
     changeStatus = (e) => {
-      this.setState({status: e.currentTarget.value})
+      this.setState({status: e.target.value})
     };
 
     render() {
