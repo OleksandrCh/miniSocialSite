@@ -33,8 +33,7 @@ export const profileAPI = {
         return instance.get(`profile/${idUser}`)
     },
     me: () => {
-        return instance.get(`auth/me`)
-            .then(response => response.data)
+        return loginAPI.me()
     },
     getStatus: (userId) => {
         return instance.get(`/profile/status/${userId}`)
@@ -45,11 +44,15 @@ export const profileAPI = {
 };
 
 export const loginAPI = {
-    logIn: (email, password, rememberMe) => {
-        return instance.post('auth/login', {email: email, password: password, rememberMe: rememberMe})
+    me: () => {
+        return instance.get(`auth/me`)
+            .then(response => response.data);
+    },
+    logIn: (email, password, rememberMe = false) => {
+        return instance.post('auth/login', {email, password, rememberMe});
     },
     logOut: () => {
-        return instance.post('auth/logout')
+        return instance.delete('auth/login');
     }
 };
 

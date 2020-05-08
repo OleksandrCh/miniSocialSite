@@ -7,10 +7,8 @@ class ProfileStatus extends Component {
             status: this.props.status,
         };
    componentDidUpdate(prevProps, prevState, snapshot) {
-       console.log('componentDidUpdate');
        if(prevProps.status !== this.props.status){
             this.setState({status: this.props.status});
-           console.log('props is change')
        }
    }
 
@@ -28,7 +26,6 @@ class ProfileStatus extends Component {
     };
 
     render() {
-        console.log('render')
         return (
             <div>
                 {!this.state.editMode &&
